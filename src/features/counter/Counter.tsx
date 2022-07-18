@@ -1,6 +1,6 @@
 import { useAppSelector } from '../../hooks';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { increment, decrement } from './counterSlice';
+import { increment, decrement, incrementByAmount } from './counterSlice';
 
 const Counter = () => {
   const count = useAppSelector((state) => state.counter.value);
@@ -23,6 +23,12 @@ const Counter = () => {
           Decrement
         </button>
       </div>
+      <button
+        aria-label="Increment By Amount value"
+        onClick={() => dispatch(incrementByAmount(3))}
+      >
+        Increment Amount
+      </button>
     </div>
   );
 };

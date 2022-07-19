@@ -32,6 +32,7 @@
     ```
     실제로는 state update가 immutable하게 일어난다.
 - thunk
+
   ```jsx
   const getUser = () => {
     // thunk
@@ -40,9 +41,12 @@
     };
   };
   ```
+
   - redux-thunk
+
     - 객체 대신 함수를 생성하는 action 생성 함수를 작성할 수 있게 한다.
     - ex) action이 특정 상황에 일어나게 해야하는 경우
+
     ```jsx
 
       function createThunkMiddleware(extraArgument) {
@@ -51,18 +55,19 @@
               getState = _ref.getState;
           return function (next) {
             return function (action) {
-    					// The thunk middleware looks for any functions that were passed to `store.dispatch`.
-              // If this "action" is really a function, call it and return the result.
-              if (typeof action === 'function') {
-                // Inject the store's `dispatch` and `getState` methods, as well as any "extra arg"
-    						return action(dispatch, getState, extraArgument);
-              }
-    					// Otherwise, pass the action down the middleware chain as usual
-              return next(action);
+                // The thunk middleware looks for any functions that were passed to `store.dispatch`.
+                // If this "action" is really a function, call it and return the result.
+                if (typeof action === 'function') {
+                    // Inject the store's `dispatch` and `getState` methods, as well as any "extra arg"
+                    return action(dispatch, getState, extraArgument);
+                }
+                // Otherwise, pass the action down the middleware chain as usual
+                return next(action);
             };
           };
         };
     ```
+
     \*\* redux-toolkit 내 redux-thunk 내장되어 있음
 
 <br/>  
